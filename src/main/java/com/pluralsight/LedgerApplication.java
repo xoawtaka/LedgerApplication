@@ -1,0 +1,44 @@
+package com.pluralsight;
+
+public class LedgerApplication {
+    public static void main(String[] args) {
+        System.out.println("Welcome to XoLedging\n" +
+                "Where all your money problems get transform to solutions!");
+    }
+}
+
+
+    public static void displayHomeScreen() {
+
+    }
+
+    public static Answer handleUserChoice (String choice) {
+
+    }
+
+
+
+//track financials
+    //spending - loans, expenses, necessities,
+    //deposits
+
+
+// read from and saved to transactions.csv
+
+// separate data
+
+//home screen
+    // add deposit method
+
+    // remove money method — make a payment method
+
+// display ledger method
+    // all entries
+    // all deposits
+    // all payments
+
+// new screen for reports
+
+
+    // exit
+    // exit page
