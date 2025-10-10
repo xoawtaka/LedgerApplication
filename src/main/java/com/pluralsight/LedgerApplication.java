@@ -2,13 +2,20 @@ package com.pluralsight;
 
 public class LedgerApplication {
     public static void main(String[] args) {
+
         System.out.println("Welcome to XoLedging\n" +
-                "Where all your money problems get transform to solutions!");
+                "The ledge where your money problems make the jump to solutions!");
     }
 }
 
 
     public static void displayHomeScreen() {
+    boolean isRunning = true;
+    while (true) {
+        System.out.println(" --- XoLedging --- ");
+        System.out.println("Which of the following would you like to do?");
+        System.out.println(""); // create deposit, payment and display ledger options as well as exit
+    }
 
     }
 
