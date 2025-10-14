@@ -43,20 +43,45 @@ public class LedgerScreen {
                     running = false;
                     break;
                 default:
-                    System.out.println("Invalid option, try again.");
+                    System.out.println("Sorry, invalid option. Try again.");
             }
         }
     }
 
     private void showAll() {
+        System.out.print("""
+                \\n ---- Ledger Statements ----
+       \s""");
+        ArrayList<Transactions> transactions = ;
+        // I want to create these methods by calling upon the list via data in transactions
+
+        // this will allow me to filter with collections.sort
     }
 
     private void showDeposits() {
+        System.out.print("""
+                \\n ---- Ledger Deposits ----
+        """);
+        // I want to create these methods by calling upon the list via data in transactions
+
+        // this will allow me to filter with collections.sort
+        // I want to sort via +money in transactions
     }
 
     private void showPayments() {
+        System.out.print("""
+                \\n ---- Ledger Payments ----
+        """);
+        // I want to create these methods by calling upon the list via data in transactions
+
+        // this will allow me to filter with collections.sort
+        // I want to sort via - or negative money payments in transactions
+
     }
 
     private void showReports() {
+        System.out.print("""
+                \\n ---- Ledger Reports ----
+        """);
     }
 }
