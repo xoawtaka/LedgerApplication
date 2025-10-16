@@ -58,11 +58,36 @@ public class LedgerScreen {
         ArrayList<Transactions> allTransactions = TransactionFileManager.displayTransactions();
 
         //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
-        allTransactions.sort(Comparator.comparing(Transactions::getVendor)
+        allTransactions.sort(
+                Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER)
                 .thenComparing(Transactions::getDate).reversed()
                 .thenComparing(Transactions::getTime).reversed());
 
-        System.out.println(allTransactions);
+        String transactionVendor = "";
+        double overallBalance = 0;
+        double vendorTotal = 0;
+
+        for (Transactions transaction : allTransactions) {
+            if (!transaction.getVendor().equalsIgnoreCase(transactionVendor)) {
+                if (!transactionVendor.isEmpty()) {
+                    System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal );
+                    System.out.println("___________________________________________________\n");
+                    overallBalance = overallBalance + vendorTotal;
+                    vendorTotal = 0;
+                }
+                transactionVendor = transaction.getVendor();
+                System.out.println("Vendor: " + transactionVendor);
+                System.out.println("___________________________________________________");
+            }
+            System.out.println(transaction);
+            vendorTotal = vendorTotal + transaction.getAmount();
+        }
+
+        System.out.printf("\nOverall Account Balance: %.2f%n", overallBalance);
+
+
+
+        /*System.out.print(allTransactions);*/
 
 
 
