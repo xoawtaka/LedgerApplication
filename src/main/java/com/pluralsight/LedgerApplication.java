@@ -25,6 +25,7 @@ public class LedgerApplication {
         while (running) {
             System.out.println("Which of the following options would you like to choose?");
             System.out.println(
+                    // take out all entries because ledger screen has it
                     """
                             A) All Entries
                             D) Add Deposit
@@ -90,7 +91,7 @@ public class LedgerApplication {
         int vendorChoice = Integer.parseInt(input.nextLine());
 
         String vendor;
-        if (vendorChoice >= 1 && vendorChoice <= vendors.length - 1) {
+        if (vendorChoice >= 1 && vendorChoice <= vendors.length - 1) { // if vendor choice is within list, then the vendor =
             vendor = vendors[vendorChoice - 1];
         } else if (vendorChoice == vendors.length) {
             System.out.print("Enter your vendor's name: ");

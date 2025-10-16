@@ -11,7 +11,7 @@ public class IDGenerator {
         MessageDigest md = MessageDigest.getInstance("MD5");
 
         // hash the data into computer readable bytes
-        byte[] hashBytes = md.digest((data.getBytes()));
+        byte[] hashBytes = md.digest((data.getBytes()));  // hello -> a998ad998shsha8e9y8a3q327r92h7f29 -> FF
 
         // I want to store the data in an elastic array to make it interchangeable for every hex string
         StringBuilder hexString = getStringBuilder(hashBytes);
@@ -40,7 +40,7 @@ public class IDGenerator {
             hexString.append(hexValue);
 
         }
-        return hexString;
+        return hexString; // Hello, hello
     }
 
     public static void main(String[] args) throws NoSuchAlgorithmException {

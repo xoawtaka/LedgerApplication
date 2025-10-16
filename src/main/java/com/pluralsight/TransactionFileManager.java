@@ -11,7 +11,7 @@ public class TransactionFileManager {
     // reading and saving data to transaction.csv
     public static void addTransaction(Transactions transaction) throws IOException {
         String fileName = "transactions.csv";
-        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
         writer.write(transaction.toString());
         writer.close();
     }

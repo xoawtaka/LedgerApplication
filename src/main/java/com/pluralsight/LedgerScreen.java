@@ -8,7 +8,6 @@ public class LedgerScreen {
 
     public LedgerScreen(TransactionFileManager fileManager) {
         this.input = new Scanner(System.in);
-        TransactionSorter sorter = new TransactionSorter();
     }
 
     public void displayLedgerScreen() throws FileNotFoundException {
@@ -52,7 +51,7 @@ public class LedgerScreen {
     private void displayAll() throws FileNotFoundException {
         System.out.print("""
                          \n ---- Ledger Statements ----
-                \s""");
+                         """);
 
         //create array list with class transactions to create an instance that equals the transactions static method
         ArrayList<Transactions> allTransactions = TransactionFileManager.displayTransactions();
@@ -70,7 +69,7 @@ public class LedgerScreen {
         for (Transactions transaction : allTransactions) {
             if (!transaction.getVendor().equalsIgnoreCase(transactionVendor)) {
                 if (!transactionVendor.isEmpty()) {
-                    System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal);
+                    System.out.printf("\n< %s transaction total: %.2f >\n", transactionVendor, vendorTotal);
                     System.out.println("___________________________________________________\n");
                     overallBalance = overallBalance + vendorTotal;
                     vendorTotal = 0;
@@ -78,26 +77,20 @@ public class LedgerScreen {
                 transactionVendor = transaction.getVendor();
                 System.out.println("<><><><><><<><><><><><><><><><><><><><><><><><><><>");
                 System.out.println("Vendor: " + transactionVendor);
-                System.out.println("<><><><><><<><><><><><><><><><><><><><><><><><><><>");
+                System.out.println("___________________________________________________");
             }
             System.out.println(transaction);
             vendorTotal = vendorTotal + transaction.getAmount();
         }
 
-        System.out.println("\n___________________________________________________");
-        System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal);
-        System.out.println("___________________________________________________\n");
+        System.out.println("___________________________________________________");
+        System.out.printf("\n< %s transaction total: %.2f >\n", transactionVendor, vendorTotal);
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><>\n");
         overallBalance = overallBalance + vendorTotal;
 
-        System.out.printf("\nOverall Account Balance: %.2f%n", overallBalance);
-
-
-
+        System.out.printf("\nOverall Account Balance: %.2f\n", overallBalance);
         /*System.out.print(allTransactions);*/
-
-
         // I want to create these methods by calling upon the list via data in transactions
-
         // this will allow me to filter with collections.sort
     }
 
