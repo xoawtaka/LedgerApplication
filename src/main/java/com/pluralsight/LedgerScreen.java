@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class LedgerScreen {
@@ -10,12 +11,12 @@ public class LedgerScreen {
         TransactionSorter sorter = new TransactionSorter();
     }
 
-    public void displayLedgerScreen() {
+    public void displayLedgerScreen() throws FileNotFoundException {
         boolean running = true;
 
         while (running) {
             System.out.print("""
-                    \\n ---- Ledger Statements ----
+                    \n ---- Ledger Statements ----
                     A) View All Transactions
                     D) View Deposits
                     P) View Payments
@@ -28,16 +29,16 @@ public class LedgerScreen {
 
             switch (choice) {
                 case "A":
-                    showAll();
+                    displayAll();
                     break;
                 case "D":
-                    showDeposits();
+                    displayDeposits();
                     break;
                 case "P":
-                    showPayments();
+                    displayPayments();
                     break;
                 case "R":
-                    showReports();
+                    displayReports();
                     break;
                 case "H":
                     running = false;
@@ -48,38 +49,46 @@ public class LedgerScreen {
         }
     }
 
-    private void showAll() {
+    private void displayAll() throws FileNotFoundException {
         System.out.print("""
-                \\n ---- Ledger Statements ----
-       \s""");
-        ArrayList<Transactions> transactions = ;
+                         \n ---- Ledger Statements ----
+                \s""");
+
+        //create array list with class transactions to create an instance that equals the transactions static method
+        ArrayList<Transactions> allTransactions = TransactionFileManager.displayTransactions();
+
+        //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
+        allTransactions.sort(Comparator.comparing(Transactions::getVendor)
+                .thenComparing(Transactions::getDate).reversed()
+                .thenComparing(Transactions::getTime).reversed());
+
+        System.out.println(allTransactions);
+
+
+
         // I want to create these methods by calling upon the list via data in transactions
 
         // this will allow me to filter with collections.sort
     }
 
-    private void showDeposits() {
+    private void displayDeposits() {
         System.out.print("""
                 \\n ---- Ledger Deposits ----
         """);
-        // I want to create these methods by calling upon the list via data in transactions
 
-        // this will allow me to filter with collections.sort
-        // I want to sort via +money in transactions
+
     }
 
-    private void showPayments() {
+    private void displayPayments() {
         System.out.print("""
                 \\n ---- Ledger Payments ----
         """);
-        // I want to create these methods by calling upon the list via data in transactions
 
-        // this will allow me to filter with collections.sort
         // I want to sort via - or negative money payments in transactions
 
     }
 
-    private void showReports() {
+    private void displayReports() {
         System.out.print("""
                 \\n ---- Ledger Reports ----
         """);

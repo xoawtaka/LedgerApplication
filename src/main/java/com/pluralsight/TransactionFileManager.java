@@ -35,15 +35,19 @@ public class TransactionFileManager {
     }
 
     private static Transactions getTransactions(String line) throws NoSuchAlgorithmException {
-        String[] transactionData = line.split("|");
-        String id =  transactionData[0];
-        LocalDate date = LocalDate.parse(transactionData[1]);
-        LocalTime time = LocalTime.parse(transactionData[2]);
-        String description = transactionData[3];
-        String vendor = transactionData[4];
-        double amount = Double.parseDouble(transactionData[5]);
+        try {
+            String[] transactionData = line.split("\\|");
+            LocalDate date = LocalDate.parse(transactionData[0]);
+            LocalTime time = LocalTime.parse(transactionData[1]);
+            String description = transactionData[2];
+            String vendor = transactionData[3];
+            double amount = Double.parseDouble(transactionData[4]);
 
-        return new Transactions(date, time, description, vendor, amount);
+            return new Transactions(date, time, description, vendor, amount);
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
     }
 }

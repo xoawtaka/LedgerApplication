@@ -78,6 +78,6 @@ public class Transactions {
 
     @Override
     public String toString() {
-        return id + "|" + date + "|" + time + "|" + description + "|" + vendor + "|" + amount;
+        return "Order ID: " + id + "\n" + date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "\n";
     }
 }

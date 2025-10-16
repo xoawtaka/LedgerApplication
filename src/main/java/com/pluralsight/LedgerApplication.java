@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LedgerApplication {
-    private static String LedgerScreen;
 
     public static void main(String[] args) throws NoSuchAlgorithmException, IOException {
 
@@ -55,7 +54,8 @@ public class LedgerApplication {
                     transactionStatement(input, false);
                     break;
                 case "L":
-                    System.out.println("Your transactions are: \n" + LedgerScreen);
+                    LedgerScreen ledgerScreen = new LedgerScreen(new TransactionFileManager());
+                    ledgerScreen.displayLedgerScreen();
                     break;
             }
             if (choice.equals("X")) {
