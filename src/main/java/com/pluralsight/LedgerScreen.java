@@ -60,8 +60,8 @@ public class LedgerScreen {
         //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
         allTransactions.sort(
                 Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER)
-                .thenComparing(Transactions::getDate).reversed()
-                .thenComparing(Transactions::getTime).reversed());
+                        .thenComparing(Transactions::getDate).reversed()
+                        .thenComparing(Transactions::getTime).reversed());
 
         String transactionVendor = "";
         double overallBalance = 0;
@@ -70,25 +70,30 @@ public class LedgerScreen {
         for (Transactions transaction : allTransactions) {
             if (!transaction.getVendor().equalsIgnoreCase(transactionVendor)) {
                 if (!transactionVendor.isEmpty()) {
-                    System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal );
+                    System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal);
                     System.out.println("___________________________________________________\n");
                     overallBalance = overallBalance + vendorTotal;
                     vendorTotal = 0;
                 }
                 transactionVendor = transaction.getVendor();
+                System.out.println("<><><><><><<><><><><><><><><><><><><><><><><><><><>");
                 System.out.println("Vendor: " + transactionVendor);
-                System.out.println("___________________________________________________");
+                System.out.println("<><><><><><<><><><><><><><><><><><><><><><><><><><>");
             }
             System.out.println(transaction);
             vendorTotal = vendorTotal + transaction.getAmount();
         }
+
+        System.out.println("\n___________________________________________________");
+        System.out.printf("%s transaction total: %.2f%n", transactionVendor, vendorTotal);
+        System.out.println("___________________________________________________\n");
+        overallBalance = overallBalance + vendorTotal;
 
         System.out.printf("\nOverall Account Balance: %.2f%n", overallBalance);
 
 
 
         /*System.out.print(allTransactions);*/
-
 
 
         // I want to create these methods by calling upon the list via data in transactions
@@ -98,16 +103,16 @@ public class LedgerScreen {
 
     private void displayDeposits() {
         System.out.print("""
-                \\n ---- Ledger Deposits ----
-        """);
+                        \\n ---- Ledger Deposits ----
+                """);
 
 
     }
 
     private void displayPayments() {
         System.out.print("""
-                \\n ---- Ledger Payments ----
-        """);
+                        \\n ---- Ledger Payments ----
+                """);
 
         // I want to sort via - or negative money payments in transactions
 
@@ -115,7 +120,7 @@ public class LedgerScreen {
 
     private void displayReports() {
         System.out.print("""
-                \\n ---- Ledger Reports ----
-        """);
+                        \\n ---- Ledger Reports ----
+                """);
     }
 }
