@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LedgerApplication {
@@ -27,27 +26,19 @@ public class LedgerApplication {
             System.out.println(
                     // take out all entries because ledger screen has it
                     """
-                            A) All Entries
                             D) Add Deposit
                             P) Make Payment (Debit)
                             L) Ledger
                             X) Exit Application"""
             );
 
-            System.out.println("\nPlease select your choice: ");
+            System.out.print("\nPlease select your choice: ");
             Scanner input = new Scanner(System.in);
             String choice = input.nextLine().trim().toUpperCase();
 
 
             // use switch statement
             switch (choice) {
-                case "A":
-                    ArrayList<Transactions> allTransactions = TransactionFileManager.displayTransactions();
-                    System.out.println("Your transactions are:");
-                    for (Transactions transaction : allTransactions) {
-                        System.out.println(transaction.toString());
-                    }
-                    break;
                 case "D":
                     transactionStatement(input, true);
                     break;

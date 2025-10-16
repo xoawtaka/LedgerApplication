@@ -58,7 +58,7 @@ public class LedgerScreen {
 
         //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
         allTransactions.sort(
-                Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER)
+                Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER) //
                         .thenComparing(Transactions::getDate).reversed()
                         .thenComparing(Transactions::getTime).reversed());
 
@@ -94,26 +94,79 @@ public class LedgerScreen {
         // this will allow me to filter with collections.sort
     }
 
-    private void displayDeposits() {
+    private void displayDeposits() throws FileNotFoundException {
         System.out.print("""
                         \\n ---- Ledger Deposits ----
                 """);
+        ArrayList<Transactions> depositTransactions = TransactionFileManager.displayTransactions();
+        depositTransactions.sort(
+                Comparator.comparing(Transactions::getDate)
+                .thenComparing(Transactions::getTime).reversed());
+
+        double depositTotal = 0;
+        for (Transactions transaction : depositTransactions) {
+            if (transaction.getAmount() > 0) {
+                depositTotal += transaction.getAmount();
+            }
+        }
+
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+        System.out.printf("\n< Deposit total: %.2f >\n", depositTotal);
+        System.out.printf("<><><><><><><><><><><><><><><><><><><><><><><><><>\n");
+
+        // display Math.abs (amount) — positive
 
 
     }
 
-    private void displayPayments() {
+    private void displayPayments() throws FileNotFoundException {
         System.out.print("""
-                        \\n ---- Ledger Payments ----
+                        \\n ---- Ledger Deposits ----
                 """);
+        ArrayList<Transactions> installments = TransactionFileManager.displayTransactions();
+        installments.sort(
+                Comparator.comparing(Transactions::getDate)
+                        .thenComparing(Transactions::getTime).reversed());
+
+        double installmentTotal = 0;
+        for (Transactions transaction : installments) {
+            if (transaction.getAmount() < 0) {
+                installmentTotal += transaction.getAmount();
+            }
+        }
+
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+        System.out.printf("\n< Transaction total: %.2f >\n", installmentTotal);
+        System.out.printf("<><><><><><><><><><><><><><><><><><><><><><><><><>\n");
+        // display -Math.abs (amount) — negative transactions
+
 
         // I want to sort via - or negative money payments in transactions
 
     }
 
-    private void displayReports() {
+    private void displayReports() throws FileNotFoundException {
         System.out.print("""
                         \\n ---- Ledger Reports ----
                 """);
+        ArrayList<Transactions> reports = TransactionFileManager.displayTransactions();
+
+        double installmentTotal = 0;
+        double depositTotal = 0;
+        for (Transactions transaction : reports) {
+            if (transaction.getAmount() > 0) {
+                depositTotal += transaction.getAmount();
+            }
+            else if (transaction.getAmount() < 0) {
+                installmentTotal += transaction.getAmount();
+            }
+        }
+
+        double reportTotal = depositTotal + installmentTotal;
+
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><>");
+        System.out.printf("\n< Your net balance is %.2f! \nGet your money up, not your funny up!!! >\n", reportTotal);
+        System.out.printf("<><><><><><><><><><><><><><><><><><><><><><><><><>\n");
+
     }
 }
