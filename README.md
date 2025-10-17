@@ -36,6 +36,9 @@ Reports: Provides a net balance summary (placeholder for future detailed reports
 H
 Return to Home: Navigates back to the main menu.
 
+<img width="2364" height="1430" alt="image" src="https://github.com/user-attachments/assets/403e62f6-4052-429e-b4b7-7f2f84b0a645" />
+
+
 ⚙️ Application Structure
 The project is structured with a clear separation of concerns across multiple classes:
 File Name
@@ -72,6 +75,8 @@ public class IDGenerator {
     }
     // ... (rest of the helper methods)
 }
+<img width="2428" height="1446" alt="image" src="https://github.com/user-attachments/assets/c600ea60-fd8b-4aee-8ea7-823ea120dd36" />
+
 
 
 Getting Started
