@@ -153,7 +153,7 @@ public class LedgerScreen {
         double reportTotal = getReportTotal(reports);
 
         System.out.println("<><><><><><><><><><><><><><><><><><><><><><><><><>"); // separator
-        System.out.printf("\n< Your net balance is %.2f! \nGet your money up, not your funny up!!! >\n", reportTotal); // displaying the net balance with a motivational message
+        System.out.printf("< Your net balance is %.2f! \nGet your money up, not your funny up!!! >\n", reportTotal); // displaying the net balance with a motivational message
         System.out.print("<><><><><><><><><><><><><><><><><><><><><><><><><>\n"); // separator
 
     }
@@ -161,7 +161,7 @@ public class LedgerScreen {
     private static double getReportTotal(ArrayList<Transactions> reports) {
         double installmentTotal = 0; // variable to sum all payments (negative)
         double depositTotal = 0; // variable to sum all deposits (positive)
-        for (Transactions transaction : reports) { // iterating through the transactions
+        for (Transactions transaction : reports) { // iterating through the transactions //instead of report flag, create if statement for report  and make transactions loops through transactio reports
             if (transaction.getAmount() > 0) { // checking for deposits
                 depositTotal += transaction.getAmount(); // adding to deposit total
             }
