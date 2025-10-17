@@ -58,6 +58,7 @@ public class LedgerScreen {
 
         //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
         allTransactions.sort( // sorting the list using a chain of comparators
+                // utilizing method reference syntax rather than lambdas (t -> t.getBlahBlahMethod)
                 Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER) // primary sort: alphabetically by vendor (case-insensitive)
                         .thenComparing(Transactions::getDate).reversed() // secondary sort: by date, in reverse order (newest first)
                         .thenComparing(Transactions::getTime).reversed()); // tertiary sort: by time, in reverse order
