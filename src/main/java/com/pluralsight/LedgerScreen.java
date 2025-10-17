@@ -57,7 +57,7 @@ public class LedgerScreen {
         ArrayList<Transactions> allTransactions = TransactionFileManager.displayTransactions(); // fetching all transactions from the file
 
         //sort by using transactions.compare() method with the parameters of transactions with/through :: vendor, date and time
-        allTransactions.sort( // sorting the list using a chain of comparators
+        allTransactions.sort( // executing JVM's (Java Virtual Machine) algorithm for sorting the object stored in ArrayList
                 // utilizing method reference syntax rather than lambdas (t -> t.getBlahBlahMethod)
                 Comparator.comparing(Transactions::getVendor, String.CASE_INSENSITIVE_ORDER) // primary sort: alphabetically by vendor (case-insensitive)
                         .thenComparing(Transactions::getDate).reversed() // secondary sort: by date, in reverse order (newest first)
@@ -68,8 +68,8 @@ public class LedgerScreen {
         double vendorTotal = 0; // variable to accumulate the running total for the current vendor group
 
         for (Transactions transaction : allTransactions) { // iterating through the sorted list of transactions
-            if (!transaction.getVendor().equalsIgnoreCase(transactionVendor)) { // check if the vendor has changed
-                if (!transactionVendor.isEmpty()) { // check if this is not the first vendor in the list
+            if (!transaction.getVendor().equalsIgnoreCase(transactionVendor)) { // check if vendor "" changed from empty (string length greater > null)
+                if (!transactionVendor.isEmpty()) { // then if vendor is not empty = true, print ->
                     System.out.printf("\n< %s transaction total: %.2f >\n", transactionVendor, vendorTotal); // printing the total for the completed vendor group
                     System.out.println("___________________________________________________\n"); // separator line
                     overallBalance = overallBalance + vendorTotal; // adding the completed vendor total to the overall balance
