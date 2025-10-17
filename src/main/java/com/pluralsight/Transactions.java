@@ -78,7 +78,7 @@ public class Transactions {
 
     @Override
     public String toString() { // overriding the default toString method for csv formatting
-        return "\n" + date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "| Order ID: " + id; // format matches the required csv layout
+        return "\n" + date + "|" + time + "|" + description + "|" + vendor + "|" + amount + "| -> Order ID: " + id; // format matches the required csv layout
         /*"\n---------------------------------------------------------------------\n"*/ // original commented line preserved
     }
 }
